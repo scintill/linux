@@ -2249,7 +2249,7 @@ static struct console s3c24xx_serial_console = {
 };
 #endif /* CONFIG_SERIAL_SAMSUNG_CONSOLE */
 
-#ifdef CONFIG_CPU_S3C2410
+#if defined(CONFIG_CPU_S3C2410) || defined(CONFIG_CPU_S5L8930)
 static struct s3c24xx_serial_drv_data s3c2410_serial_drv_data = {
 	.info = &(struct s3c24xx_uart_info) {
 		.name		= "Samsung S3C2410 UART",

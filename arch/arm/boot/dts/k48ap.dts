@@ -72,7 +72,7 @@
 		ranges;
 
 		uart0: serial@82500000 {
-			compatible = "samsung,s3c2410-uart"; /* XXX not working on hardware yet. s3c6400 was working in QEMU, but this doesn't */
+			compatible = "samsung,s3c2410-uart";
 			reg = <0x82500000 0x1000>;
 			interrupt-parent = <&vic0>;
 			interrupts = <0x16>;
