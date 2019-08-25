@@ -14,16 +14,16 @@
 	#address-cells = <1>;
 	#size-cells = <1>;
 
-	chosen {	
+	chosen {
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
 
 		bootargs = " "; /* XXX testing */
-		
-		framebuffer@0F700000 {	
+
+		framebuffer@0F700000 {
 			compatible = "simple-framebuffer";
-			reg = <0x0F700000 (1024 * 768 * 4)>; // fbmem reserved
+			reg = <0x0F700000 (1024 * 768 * 4)>; // see reserved-memory: fbmem
 			width = <1024>;
 			height = <768>;
 			stride = <(1024 * 4)>;
@@ -51,12 +51,12 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
-		
+
 		fbmem: fbmem@0F700000 {
 			reg = <0x0F700000 (1024 * 768 * 4)>;
 			no-map;
 		};
-				
+
 		ramoops: ramoops@0ffe0000 {
 			compatible = "ramoops";
 			reg = <0x0ffe0000 0x20000>; // 128kB
@@ -69,7 +69,7 @@
 		compatible = "simple-bus";
 		#address-cells = <1>;
 		#size-cells = <1>;
-		ranges;	
+		ranges;
 
 		uart0: serial@82500000 {
 			compatible = "samsung,s3c6400-uart";
@@ -77,7 +77,7 @@
 			interrupt-parent = <&vic0>;
 			interrupts = <0x16>;
 			clocks = <&osc24M>; /* TODO do we also need to set S3C6400_UCON_UCLK0? We have it sort-of working for console output in QEMU, but has a buffering issue that's either in the QEMU impl or here... */
-			clock-names = "uart";			
+			clock-names = "uart";
 		};
 
 		vic0: interrupt-controller@BF200000 {
@@ -103,18 +103,18 @@
 			interrupt-controller;
 			reg = <0xBF230000 0x1000>;
 			#interrupt-cells = <1>;
-		};						
-		
+		};
+
 		timer0: timer@BF102000 {
 			compatible = "apple,s5l8930-timer";
 			reg = <0xBF102000 0x4000>;
-			clocks = <&osc24M>;			
+			clocks = <&osc24M>;
 			interrupt-parent = <&vic0>;
 			interrupts = <0x6>;
 		};
 
 	};
-	
+
 	clocks {
 		#address-cells = <1>;
 		#size-cells = <1>;

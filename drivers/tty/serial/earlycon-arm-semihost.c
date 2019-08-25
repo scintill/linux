@@ -18,22 +18,14 @@
 #define SEMIHOST_SWI	"0x123456"
 #endif
 
+static void (*framebuffer_putc888)(int) = (void*)0x7b28;
+
 /*
  * Semihosting-based debug console
  */
 static void smh_putc(struct uart_port *port, int c)
 {
-#ifdef CONFIG_ARM64
-	asm volatile("mov  x1, %0\n"
-		     "mov  x0, #3\n"
-		     "hlt  0xf000\n"
-		     : : "r" (&c) : "x0", "x1", "memory");
-#else
-	asm volatile("mov  r1, %0\n"
-		     "mov  r0, #3\n"
-		     "svc  " SEMIHOST_SWI "\n"
-		     : : "r" (&c) : "r0", "r1", "memory");
-#endif
+	framebuffer_putc888(c);
 }
 
 static void smh_write(struct console *con, const char *s, unsigned n)

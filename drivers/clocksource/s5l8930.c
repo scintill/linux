@@ -120,9 +120,6 @@ static int __init s5l8930_init(struct device_node *node) {
 	if (ret)
 		return ret;
 
-	// XXX testing
-	s5l8930_timer_reboot();
-
 	s5l_timer0_disable(&tof);
 
 	/* TODO should probably add a sched clock, but I want to understand more about why it's needed first */
