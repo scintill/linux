@@ -685,4 +685,10 @@ config MILBEAUT_TIMER
 	help
 	  Enables the support for Milbeaut timer driver.
 
+config CLKSRC_APPLE_S5L8930
+	bool "Clocksource for Apple S5L8930"
+	depends on HAS_IOMEM
+	select TIMER_OF
+	select CLKSRC_MMIO
+
 endmenu

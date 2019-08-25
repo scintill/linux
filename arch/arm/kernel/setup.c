@@ -1127,6 +1127,14 @@ void __init setup_arch(char **cmdline_p)
 	/* Memory may have been removed so recalculate the bounds. */
 	adjust_lowmem_bounds();
 
+	// XXX reboot for testing
+	void __iomem *ppmgr = ioremap(0xBF102000, 0x300);
+	writel(0, ppmgr + 0x2c);
+	writel(1, ppmgr + 0x24);
+	writel(0x80000000, ppmgr + 0x20);
+	writel(4, ppmgr + 0x2c);
+	writel(0, ppmgr + 0x20);
+
 	early_ioremap_reset();
 
 	paging_init(mdesc);

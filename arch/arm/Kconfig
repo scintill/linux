@@ -271,7 +271,7 @@ config PHYS_OFFSET
 			ARCH_KS8695 || \
 			ARCH_REALVIEW
 	default 0x10000000 if ARCH_OMAP1 || ARCH_RPC
-	default 0x20000000 if ARCH_S5PV210
+	default 0x00000000 if ARCH_S5PV210
 	default 0xc0000000 if ARCH_SA1100
 	help
 	  Please provide the physical address corresponding to the
@@ -802,6 +802,8 @@ source "arch/arm/mach-s3c24xx/Kconfig"
 source "arch/arm/mach-s3c64xx/Kconfig"
 
 source "arch/arm/mach-s5pv210/Kconfig"
+
+source "arch/arm/mach-s5l8930/Kconfig"
 
 source "arch/arm/mach-sa1100/Kconfig"
 
